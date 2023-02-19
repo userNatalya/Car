@@ -1,31 +1,31 @@
-#include<iostream>
+п»ї#include<iostream>
 #include<conio.h>
 #include<thread>
 #include<Windows.h>
 using namespace std;
 using namespace std::literals::chrono_literals;
-//#define MIN_TANK_VOLUME 20//константы обьявляются в с(а глобальные переменные нельзя)можно const int
+//#define MIN_TANK_VOLUME 20//РєРѕРЅСЃС‚Р°РЅС‚С‹ РѕР±СЊСЏРІР»СЏСЋС‚СЃСЏ РІ СЃ(Р° РіР»РѕР±Р°Р»СЊРЅС‹Рµ РїРµСЂРµРјРµРЅРЅС‹Рµ РЅРµР»СЊР·СЏ)РјРѕР¶РЅРѕ const int
 //#define MAX_TANK_VOLUME 80
 //#define TANK_CHECK
 //#define TANK_CHECK
-//Некоторым макросам дают только имя,и не дают никакого значения,//такие макросы используют ся с дерективами условной компиляции #ifdef...#dif
+//РќРµРєРѕС‚РѕСЂС‹Рј РјР°РєСЂРѕСЃР°Рј РґР°СЋС‚ С‚РѕР»СЊРєРѕ РёРјСЏ,Рё РЅРµ РґР°СЋС‚ РЅРёРєР°РєРѕРіРѕ Р·РЅР°С‡РµРЅРёСЏ,//С‚Р°РєРёРµ РјР°РєСЂРѕСЃС‹ РёСЃРїРѕР»СЊР·СѓСЋС‚ СЃСЏ СЃ РґРµСЂРµРєС‚РёРІР°РјРё СѓСЃР»РѕРІРЅРѕР№ РєРѕРјРїРёР»СЏС†РёРё #ifdef...#dif
 //#define ENGINE_CHECK
-//# показывает,что дальше идет директива 
-//Директива -это указание компилятору  на выполнение некоторых действий
-//Например,директива #include(включить в состав,подключить) указывает компилятору на то ,что к нашему исходному файлу нужно подключить другой файл
-//Директива #define(определить)создает макроопределение макрос,типа ИМЯ ЗНАЧЕНИЕ
-//и везде где компилятор видит имя макроса вставляет значение макроса
+//# РїРѕРєР°Р·С‹РІР°РµС‚,С‡С‚Рѕ РґР°Р»СЊС€Рµ РёРґРµС‚ РґРёСЂРµРєС‚РёРІР° 
+//Р”РёСЂРµРєС‚РёРІР° -СЌС‚Рѕ СѓРєР°Р·Р°РЅРёРµ РєРѕРјРїРёР»СЏС‚РѕСЂСѓ  РЅР° РІС‹РїРѕР»РЅРµРЅРёРµ РЅРµРєРѕС‚РѕСЂС‹С… РґРµР№СЃС‚РІРёР№
+//РќР°РїСЂРёРјРµСЂ,РґРёСЂРµРєС‚РёРІР° #include(РІРєР»СЋС‡РёС‚СЊ РІ СЃРѕСЃС‚Р°РІ,РїРѕРґРєР»СЋС‡РёС‚СЊ) СѓРєР°Р·С‹РІР°РµС‚ РєРѕРјРїРёР»СЏС‚РѕСЂСѓ РЅР° С‚Рѕ ,С‡С‚Рѕ Рє РЅР°С€РµРјСѓ РёСЃС…РѕРґРЅРѕРјСѓ С„Р°Р№Р»Сѓ РЅСѓР¶РЅРѕ РїРѕРґРєР»СЋС‡РёС‚СЊ РґСЂСѓРіРѕР№ С„Р°Р№Р»
+//Р”РёСЂРµРєС‚РёРІР° #define(РѕРїСЂРµРґРµР»РёС‚СЊ)СЃРѕР·РґР°РµС‚ РјР°РєСЂРѕРѕРїСЂРµРґРµР»РµРЅРёРµ РјР°РєСЂРѕСЃ,С‚РёРїР° РРњРЇ Р—РќРђР§Р•РќРР•
+//Рё РІРµР·РґРµ РіРґРµ РєРѕРјРїРёР»СЏС‚РѕСЂ РІРёРґРёС‚ РёРјСЏ РјР°РєСЂРѕСЃР° РІСЃС‚Р°РІР»СЏРµС‚ Р·РЅР°С‡РµРЅРёРµ РјР°РєСЂРѕСЃР°
 
 #define Enter 13
 #define Escape 27
-class Tank//описываем БАК топливо
+class Tank//РѕРїРёСЃС‹РІР°РµРј Р‘РђРљ С‚РѕРїР»РёРІРѕ
 {
-	static const int MIN_TANK_VOLUME = 20;//обьем бака.
-	static const int MAX_TANK_VOLUME = 80;//уровень топлива,статические переменные хранятся не в обьекте,они явл общими для всех обьектов класса,для всего класса
+	static const int MIN_TANK_VOLUME = 20;//РѕР±СЊРµРј Р±Р°РєР°.
+	static const int MAX_TANK_VOLUME = 80;//СѓСЂРѕРІРµРЅСЊ С‚РѕРїР»РёРІР°,СЃС‚Р°С‚РёС‡РµСЃРєРёРµ РїРµСЂРµРјРµРЅРЅС‹Рµ С…СЂР°РЅСЏС‚СЃСЏ РЅРµ РІ РѕР±СЊРµРєС‚Рµ,РѕРЅРё СЏРІР» РѕР±С‰РёРјРё РґР»СЏ РІСЃРµС… РѕР±СЊРµРєС‚РѕРІ РєР»Р°СЃСЃР°,РґР»СЏ РІСЃРµРіРѕ РєР»Р°СЃСЃР°
 
-	const int VOLUME;//это обычные переменные класса
+	const int VOLUME;//СЌС‚Рѕ РѕР±С‹С‡РЅС‹Рµ РїРµСЂРµРјРµРЅРЅС‹Рµ РєР»Р°СЃСЃР°
 	double fuel_level;
-public://нужны geteri и setteri
+public://РЅСѓР¶РЅС‹ geteri Рё setteri
 	int get_VOLUME()const
 	{
 		return VOLUME;
@@ -49,7 +49,7 @@ public://нужны geteri и setteri
 	{
 		cout << "TDestuctor:\t" << this << endl;
 	}
-	void fill(double amount)//принимает значение уровень топлива
+	void fill(double amount)//РїСЂРёРЅРёРјР°РµС‚ Р·РЅР°С‡РµРЅРёРµ СѓСЂРѕРІРµРЅСЊ С‚РѕРїР»РёРІР°
 	{
 		if (fuel_level + amount > VOLUME)fuel_level = VOLUME;
 		else fuel_level += amount;
@@ -60,7 +60,7 @@ public://нужны geteri и setteri
 		if (fuel_level < 0)fuel_level = 0;
 		return fuel_level;
 	}
-	void info()const//метод конст.кот показ состояние нашего бака
+	void info()const//РјРµС‚РѕРґ РєРѕРЅСЃС‚.РєРѕС‚ РїРѕРєР°Р· СЃРѕСЃС‚РѕСЏРЅРёРµ РЅР°С€РµРіРѕ Р±Р°РєР°
 	{
 		cout << "Volume: \n " << VOLUME << endl;
 		cout << "Fuel level:" << fuel_level << endl;
@@ -151,7 +151,7 @@ public:
 	{
 		driver_inside = false;
 		speed = 0;
-		cout << "Ваша машина готова,нажимайте " << endl;
+		cout << "Р’Р°С€Р° РјР°С€РёРЅР° РіРѕС‚РѕРІР°,РЅР°Р¶РёРјР°Р№С‚Рµ " << endl;
 	}
 	~Car()
 	{
@@ -176,9 +176,9 @@ public:
 			cout << "Fuel level:\t" << tank.get_fuel_level() << " liters\t";
 			if (tank.get_fuel_level() < 5)
 			{
-				SetConsoleTextAttribute(hConsole, 0xCF);//0xСF:
-				cout << "LOW FUEL";//0X	CF "C'-красный фон,"F"-белые буквы
-				SetConsoleTextAttribute(hConsole, 0x07);//0xСF:
+				SetConsoleTextAttribute(hConsole, 0xCF);//0xРЎF:
+				cout << "LOW FUEL";//0X	CF "C'-РєСЂР°СЃРЅС‹Р№ С„РѕРЅ,"F"-Р±РµР»С‹Рµ Р±СѓРєРІС‹
+				SetConsoleTextAttribute(hConsole, 0x07);//0xРЎF:
 			}
 			cout << endl;
 			cout << "Consuption her second" << engine.get_consumption_per_second(speed) << "liters\n";
@@ -196,7 +196,7 @@ public:
 	}
 
 
-	//Методы:
+	//РњРµС‚РѕРґС‹:
 	void get_in()
 	{
 		driver_inside = true;
@@ -281,15 +281,15 @@ public:
 				}
 				break;
 			case Enter:driver_inside ? get_out() : get_in(); break;
-			case'I':case'i'://Зажигание
+			case'I':case'i'://Р—Р°Р¶РёРіР°РЅРёРµ
 				engine.started() ? stop_engine() : start_engine();
 				break;
 			case'F':case'f':
-				if (driver_inside)cout << "Ну выйди из машины!" << endl;
+				if (driver_inside)cout << "РќСѓ РІС‹Р№РґРё РёР· РјР°С€РёРЅС‹!" << endl;
 				else
 				{
 					double amount;
-					cout << "Введите обьем топлива:"; cin >> amount;
+					cout << "Р’РІРµРґРёС‚Рµ РѕР±СЊРµРј С‚РѕРїР»РёРІР°:"; cin >> amount;
 					tank.fill(amount);
 				}
 				break;
@@ -305,9 +305,9 @@ public:
 
 
 	}
-	void engine_edle()//холостой ход двигателя
+	void engine_edle()//С…РѕР»РѕСЃС‚РѕР№ С…РѕРґ РґРІРёРіР°С‚РµР»СЏ
 	{
-		while (engine.started() && tank.give_fuel(engine.get_consumption_per_second(speed)))//бак будет давать такой обьем топлива
+		while (engine.started() && tank.give_fuel(engine.get_consumption_per_second(speed)))//Р±Р°Рє Р±СѓРґРµС‚ РґР°РІР°С‚СЊ С‚Р°РєРѕР№ РѕР±СЊРµРј С‚РѕРїР»РёРІР°
 		{
 			std::this_thread::sleep_for(1s);
 		}
@@ -323,8 +323,8 @@ public:
 
 };
 //#define TANK CHECK
-//Некоторым макросам дают только имя,не дают никакого значения,
-//такие макросы используются с директивами условной компеляции #ifdef......... #endif
+//РќРµРєРѕС‚РѕСЂС‹Рј РјР°РєСЂРѕСЃР°Рј РґР°СЋС‚ С‚РѕР»СЊРєРѕ РёРјСЏ,РЅРµ РґР°СЋС‚ РЅРёРєР°РєРѕРіРѕ Р·РЅР°С‡РµРЅРёСЏ,
+//С‚Р°РєРёРµ РјР°РєСЂРѕСЃС‹ РёСЃРїРѕР»СЊР·СѓСЋС‚СЃСЏ СЃ РґРёСЂРµРєС‚РёРІР°РјРё СѓСЃР»РѕРІРЅРѕР№ РєРѕРјРїРµР»СЏС†РёРё #ifdef......... #endif
 
 void main()
 {
@@ -336,11 +336,11 @@ void main()
 	do
 	{
 		int fuel;
-		cout << "ВВедите обьем топлива"; cin >> fuel;
+		cout << "Р’Р’РµРґРёС‚Рµ РѕР±СЊРµРј С‚РѕРїР»РёРІР°"; cin >> fuel;
 		tank.fill(fuel);
 		tank.info();
 
-	} while (_getch() != 27);//Если определено TANK_CHECK,то следующий код до директивы #endif будет виден компилятору
+	} while (_getch() != 27);//Р•СЃР»Рё РѕРїСЂРµРґРµР»РµРЅРѕ TANK_CHECK,С‚Рѕ СЃР»РµРґСѓСЋС‰РёР№ РєРѕРґ РґРѕ РґРёСЂРµРєС‚РёРІС‹ #endif Р±СѓРґРµС‚ РІРёРґРµРЅ РєРѕРјРїРёР»СЏС‚РѕСЂСѓ
 #endif
 
 #ifdef ENGINE_CHECK
